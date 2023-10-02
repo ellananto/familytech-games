@@ -8,6 +8,7 @@ export default class AuthService {
     let redirectUri = isDev
       ? 'http://localhost:3000/login'
       : `${process.env.DOMAIN}/login`;
+    window.open(`${authUrl}/?redirect=${redirectUri}/&site=ag`);
     axios
       .get(`${authUrl}/?redirect=${redirectUri}/&site=ag`)
       .then((res) => {
