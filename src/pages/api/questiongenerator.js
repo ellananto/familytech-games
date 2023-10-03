@@ -11,8 +11,8 @@ export default function handler (req, res)
         fsData = new Tree();
         const map = new Map(Object.entries(req.body.userFSData));
         fsData.setPersons(map);
-        var ascendancyNums = req.body.ascendancyNums;
-        var promptArray = new Array;
+        const ascendancyNums = req.body.ascendancyNums;
+        const promptArray = [];
 
         //console.log('req: ', req.body)
         //console.log("size before becoming a map " + Object.entries(req.body.userFSData).length);
@@ -74,33 +74,43 @@ const questions = [
     function(person) { return q7(person); },
     function(person) { return q8(person); },
 ]
-
+function getHint(first, last) {
+    return `This person's initials are ${first.charAt(0)}.${last.charAt(0)}.`
+}
 const q0 = function(person) {
     if (fsData.getSpouse(person.a_num) != null) { return {
         clue: "The name of " + fsData.getSpouse(person.a_num).name.full + "'s spouse.",
         answer: person.name.compressedName,
-    }} else { return q1(person); }
+        hint: getHint(person?.name?.first, person?.name?.last)
+        }
+    } else { return q1(person); }
 }
 
 const q1 = function(person) {
-    if (fsData.getChild(person.a_num)) { return {
-        clue: fsData.getChild(person.a_num).name.full + " is this " + (person.gender == "Male" ? "man" : "woman") + "'s child.",
+    if (fsData.getChild(person.a_num)) {
+        return {
+        clue: fsData.getChild(person.a_num).name.full + " is this " + (person.gender === "Male" ? "man" : "woman") + "'s child.",
         answer: person.name.compressedName,
-    }} else { 
-        var rand = Math.floor(Math.random() * 2);
-        if (rand == 0) {return q2(person);}
+        hint: getHint(person?.name?.first, person?.name?.last)
+        }
+    } else {
+        const rand = Math.floor(Math.random() * 2);
+        if (rand === 0) {return q2(person);}
         else return q3(person);
     }
 }
 
 const q2 = function(person) {
     console.log("IN q2 ");
-    if (fsData.getChild(person.a_num) && person.gender === "Male") 
-    {   console.log("IN q2 if statement");
+    if (fsData.getChild(person.a_num) && person.gender === "Male") {
+        console.log("IN q2 if statement");
+
         return {
         clue: "This person is the father of " + fsData.getChild(person.a_num).name.full + ".",
         answer: person.name.compressedName,
-    }} else { return q4(person); }
+        hint: getHint(person?.name?.first, person?.name?.last)
+        }
+    } else { return q4(person); }
 }
 
 const q3 = function(person) {
@@ -109,7 +119,9 @@ const q3 = function(person) {
         return {
         clue: "This person is the mother of " + fsData.getChild(person.a_num).name.full + ".",
         answer: person.name.compressedName,
-    }} else { return q4(person); }
+        hint: getHint(person?.name?.first, person?.name?.last)
+        }
+    } else { return q4(person); }
 }
 
 const q4 = function(person) {
@@ -118,7 +130,9 @@ const q4 = function(person) {
         return {
         clue: "This person is the child of " + fsData.getFather(person.a_num).name.full + ".",
         answer: person.name.compressedName,
-    }} else { return q5(person); }
+        hint: getHint(person?.name?.first, person?.name?.last)
+        }
+    } else { return q5(person); }
 }
 
 const q5 = function(person) {
@@ -127,7 +141,9 @@ const q5 = function(person) {
         return {
         clue: "This person is the child of " + fsData.getMother(person.a_num).name.full + ".",
         answer: person.name.compressedName,
-    }} else { return q6(person); }
+        hint: getHint(person?.name?.first, person?.name?.last)
+        }
+    } else { return q6(person); }
 }
 
 const q6 = function(person) {
@@ -135,7 +151,9 @@ const q6 = function(person) {
         clue: "This person died in " + person.deathPlace + " at the age of " + person.lifespan.years + " in " 
             + person.deathDate.year + ".",
         answer: person.name.compressedName,
-    }} else { return q7(person); }
+        hint: getHint(person?.name?.first, person?.name?.last)
+    }
+    } else { return q7(person); }
 }
 
 const q7 = function(person) {
@@ -143,14 +161,18 @@ const q7 = function(person) {
         clue: "This person was born in " + person.birthPlace + " in " 
             + person.birthDate.month + " " + person.birthDate.day + ", " + person.birthDate.year + ".",
         answer: person.name.compressedName,
-    }} else { return q8(person); }
+        hint: getHint(person?.name?.first, person?.name?.last)
+        }
+    } else { return q8(person); }
 }
 
 const q8 = function(person) {
     if (person.birthPlace && person.birthDate.year) { return {
         clue: "This person was born in " + person.birthPlace + " in " + person.birthDate.year + ".",
         answer: person.name.compressedName,
-    }} else { return q0(person); }
+        hint: getHint(person?.name?.first, person?.name?.last)
+        }
+    } else { return q0(person); }
 }
 
 //rare questions

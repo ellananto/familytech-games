@@ -61,3 +61,21 @@
   top: 15px;
   padding: 10px;
 }
+
+.hint_button_container {
+  display: inline-block; /* This container holds both the text and button */
+}
+
+.hint_button {
+  background-color: #ffbd03;
+  color: #000; /* Text color */
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-block; /* Display the button inline with text */
+  align-items: center;
+  margin-right: 5px;
+  margin-left: 5px;
+}

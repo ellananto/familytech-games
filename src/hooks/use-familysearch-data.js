@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, {useContext, useMemo} from 'react';
 import useLocalStorageReducer from '@/hooks/use-local-storage-reducer';
 
 // Reducers
@@ -52,7 +52,7 @@ export const FamilySearchDataProvider = ({ children }) => {
       },
       dispatch,
     ],
-    [familySearchData]
+    [dispatch, familySearchData]
   );
 
   return (
@@ -73,12 +73,10 @@ export const useFamilySearchData = () => {
 
   const setFSData = (fsData) => dispatch({ type: 'SET_FS_DATA', fsData });
 
-  const familySearchData = {
+  return {
     ...state,
     setToken,
     setUserPID,
     setFSData,
   };
-
-  return familySearchData;
 };

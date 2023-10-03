@@ -5,11 +5,22 @@ import { isDev } from '@/lib/utils';
 export default class AuthService {
   static doLogin = async () => {
     let authUrl = 'https://auth.byufamilytech.org';
+    const options = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+        // 'Access-Control-Allow-Methods': 'GET,DELETE,PATCH,POST,PUT',
+        // 'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+        // 'Cache-Control': 'no-cache',
+        // 'Content-Type': 'application/x-www-form-urlencoded'
+
+      }
+    }
     let redirectUri = isDev
       ? 'http://localhost:3000/login'
       : `${process.env.DOMAIN}/login`;
     axios
-      .get(`${authUrl}/?redirect=${redirectUri}/&site=ag`)
+      .get(`${authUrl}/?redirect=${redirectUri}/&site=ag`, options)
       .then((res) => {
         window.location = res.request.responseURL;
       })

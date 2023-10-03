@@ -38,7 +38,7 @@ function Board() {
   const [horClues, setHorClues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [puzzleIsCorrect, setPuzzleIsCorrect] = useState(false);
-  const inputLocation = useRef(new Array());
+  const inputLocation = useRef([]);
 
   //Tells the page if it should be loading to make sure the clues are all set up before it is shown to the user
   useEffect(() => {
@@ -68,8 +68,8 @@ function Board() {
   // Gets the clue data for each word that is put into the crossword and sets it to the clues variable
   async function fetchData(userFSData, ascendancyNums) {
     //TO TEST LOCALLY, COMMENT OUT THE LOWER URL AND UNCOMMENT THE TOP ONE. THEN WHEN YOU PUSH TO MAIN, MAKE SURE THE TOP URL IS COMMENTED AND THE BOTTOM IS NOT
-    //const url = "http://localhost:3000/api/questiongenerator";
-    const url = "https://games.byufamilytech.org/api/questiongenerator";
+    const url = "http://localhost:3000/api/questiongenerator";
+    // const url = "https://games.byufamilytech.org/api/questiongenerator";
   
     try {
       const res = await axios.post(url, {userFSData, ascendancyNums});
@@ -93,23 +93,23 @@ function Board() {
     newBoard[row].CURRENT_ROW[col].CHARACTER = letter;
     setBoard(newBoard);
     setPuzzleIsCorrect(checkIfFinished());
-    if (inputLocation.current[row * DIMENSIONS + col].value == "") {
-      if (inputLocation.current[row * DIMENSIONS + col - 1].value != "") {
+    if (inputLocation.current[row * DIMENSIONS + col].value === "") {
+      if (inputLocation.current[row * DIMENSIONS + col - 1].value !== "") {
         inputLocation.current[row * DIMENSIONS + col - 1].focus();
       } else {
         inputLocation.current[row * DIMENSIONS + col - DIMENSIONS].focus();
       }
-    } else if (inputLocation.current[row * DIMENSIONS + col - 1].value != "") {
-      if (inputLocation.current[row * DIMENSIONS + col + 1].value != "") {
+    } else if (inputLocation.current[row * DIMENSIONS + col - 1].value !== "") {
+      if (inputLocation.current[row * DIMENSIONS + col + 1].value !== "") {
         inputLocation.current[row * DIMENSIONS + col + 2].focus();
       } else {
         inputLocation.current[row * DIMENSIONS + col + 1].focus();
       }
     } else if (
-      inputLocation.current[row * DIMENSIONS + col - DIMENSIONS].value != ""
+      inputLocation.current[row * DIMENSIONS + col - DIMENSIONS].value !== ""
     ) {
       if (
-        inputLocation.current[row * DIMENSIONS + col + DIMENSIONS].value != ""
+        inputLocation.current[row * DIMENSIONS + col + DIMENSIONS].value !== ""
       ) {
         inputLocation.current[row * DIMENSIONS + col + DIMENSIONS * 2].focus();
       } else {
@@ -117,11 +117,11 @@ function Board() {
       }
     } else {
       if (
-        inputLocation.current[row * DIMENSIONS + col + DIMENSIONS].value != ""
+        inputLocation.current[row * DIMENSIONS + col + DIMENSIONS].value !== ""
       ) {
         inputLocation.current[row * DIMENSIONS + col + DIMENSIONS * 2].focus();
       } else if (
-        inputLocation.current[row * DIMENSIONS + col + 1].value != ""
+        inputLocation.current[row * DIMENSIONS + col + 1].value !== ""
       ) {
         inputLocation.current[row * DIMENSIONS + col + 2].focus();
       } else {
@@ -173,7 +173,7 @@ function Board() {
           START_SQUARES,
           remainingWords[i].ASCENDENCY_NUM
         );
-        if (wordInserted == true) {
+        if (wordInserted === true) {
           break;
         }
       }
@@ -224,7 +224,7 @@ function Board() {
         foundCollisions[i],
         board
       );
-      if (insertCheck.INSERT == true) {
+      if (insertCheck.INSERT === true) {
         board = insertWord(
           wordToAdd,
           board,
@@ -254,7 +254,7 @@ function Board() {
     let splitWord = wordToAdd.split(collision.character);
     let firstPart = "";
     let secondPart = "";
-    if (splitWord.length == 2) {
+    if (splitWord.length === 2) {
       firstPart = splitWord[0].split("").reverse();
       secondPart = splitWord[1].split("");
     } else if (splitWord.length > 2) {
@@ -265,7 +265,7 @@ function Board() {
         secondPart += splitWord[i];
       }
     } else {
-      if (charIndex == 0) {
+      if (charIndex === 0) {
         secondPart = splitWord[0].split("");
       } else if ((charIndex = wordToAdd.length - 1)) {
         firstPart = splitWord[0].split("");
@@ -293,13 +293,13 @@ function Board() {
             currentBoard[collision.row].CURRENT_ROW[collision.col - i]
               .KEY_CHARACTER === firstPart[i - 1]) &&
           currentBoard[collision.row].CURRENT_ROW[collision.col - i]
-            .AVAILABLE == true &&
+            .AVAILABLE === true &&
           currentBoard[collision.row + 1].CURRENT_ROW[collision.col - i]
-            .KEY_CHARACTER == "*" &&
+            .KEY_CHARACTER === "*" &&
           currentBoard[collision.row - 1].CURRENT_ROW[collision.col - i]
-            .KEY_CHARACTER == "*" &&
+            .KEY_CHARACTER === "*" &&
           currentBoard[collision.row].CURRENT_ROW[collision.col - i - 1]
-            .AVAILABLE == true
+            .AVAILABLE === true
         ) {
           canInsert = true;
         } else {
@@ -314,13 +314,13 @@ function Board() {
             currentBoard[collision.row].CURRENT_ROW[collision.col + i]
               .KEY_CHARACTER === secondPart[i - 1]) &&
           currentBoard[collision.row].CURRENT_ROW[collision.col + i]
-            .AVAILABLE == true &&
+            .AVAILABLE === true &&
           currentBoard[collision.row + 1].CURRENT_ROW[collision.col + i]
-            .KEY_CHARACTER == "*" &&
+            .KEY_CHARACTER === "*" &&
           currentBoard[collision.row - 1].CURRENT_ROW[collision.col + i]
-            .KEY_CHARACTER == "*" &&
+            .KEY_CHARACTER === "*" &&
           currentBoard[collision.row].CURRENT_ROW[collision.col + i + 1]
-            .AVAILABLE == true
+            .AVAILABLE === true
         ) {
           canInsert = true;
         } else {
@@ -351,13 +351,13 @@ function Board() {
             currentBoard[collision.row - i].CURRENT_ROW[collision.col]
               .KEY_CHARACTER === firstPart[i - 1]) &&
           currentBoard[collision.row - i].CURRENT_ROW[collision.col]
-            .AVAILABLE == true &&
+            .AVAILABLE === true &&
           currentBoard[collision.row - i].CURRENT_ROW[collision.col + 1]
-            .KEY_CHARACTER == "*" &&
+            .KEY_CHARACTER === "*" &&
           currentBoard[collision.row - i].CURRENT_ROW[collision.col - 1]
-            .KEY_CHARACTER == "*" &&
+            .KEY_CHARACTER === "*" &&
           currentBoard[collision.row - i - 1].CURRENT_ROW[collision.col]
-            .AVAILABLE == true
+            .AVAILABLE === true
         ) {
           canInsert = true;
         } else {
@@ -372,13 +372,13 @@ function Board() {
             currentBoard[collision.row + i].CURRENT_ROW[collision.col]
               .KEY_CHARACTER === secondPart[i - 1]) &&
           currentBoard[collision.row + i].CURRENT_ROW[collision.col]
-            .AVAILABLE == true &&
+            .AVAILABLE === true &&
           currentBoard[collision.row + i].CURRENT_ROW[collision.col + 1]
-            .KEY_CHARACTER == "*" &&
+            .KEY_CHARACTER === "*" &&
           currentBoard[collision.row + i].CURRENT_ROW[collision.col - 1]
-            .KEY_CHARACTER == "*" &&
+            .KEY_CHARACTER === "*" &&
           currentBoard[collision.row + i + 1].CURRENT_ROW[collision.col]
-            .AVAILABLE == true
+            .AVAILABLE === true
         ) {
           canInsert = true;
         } else {
@@ -402,7 +402,7 @@ function Board() {
     let splitWord = wordToAdd.split(collision.character);
     let firstPart = "";
     let secondPart = "";
-    if (splitWord.length == 2) {
+    if (splitWord.length === 2) {
       firstPart = splitWord[0].split("").reverse();
       secondPart = splitWord[1].split("");
     } else if (splitWord.length > 2) {
@@ -413,16 +413,16 @@ function Board() {
         secondPart += splitWord[i];
       }
     } else {
-      if (charIndex == 0) {
+      if (charIndex === 0) {
         secondPart = splitWord[0].split("");
       } else if ((charIndex = wordToAdd.length - 1)) {
         firstPart = splitWord[0].split("");
       }
     }
-    if (direction == "horizontal") {
+    if (direction === "horizontal") {
       let firstRow = 0;
       let firstCol = 0;
-      if (firstPart.length == 0) {
+      if (firstPart.length === 0) {
         firstRow = collision.row;
         firstCol = collision.col;
         START_SQUARES.push({ ROW: firstRow, COL: firstCol });
@@ -434,7 +434,7 @@ function Board() {
         currentBoard[collision.row].CURRENT_ROW[
           collision.col - i
         ].AVAILABLE = false;
-        if (i == firstPart.length) {
+        if (i === firstPart.length) {
           firstRow = collision.row;
           firstCol = collision.col - i;
           START_SQUARES.push({ ROW: firstRow, COL: firstCol });
@@ -460,16 +460,16 @@ function Board() {
           START_SQUARES.indexOf(
             START_SQUARES.filter(
               (e) =>
-                e.ROW == collision.row &&
-                e.COL == collision.col - firstPart.length
+                e.ROW === collision.row &&
+                e.COL === collision.col - firstPart.length
             )[0]
           ) + 1,
       });
     }
-    if (direction == "vertical") {
+    if (direction === "vertical") {
       let firstRow = 0;
       let firstCol = 0;
-      if (firstPart.length == 0) {
+      if (firstPart.length === 0) {
         firstRow = collision.row;
         firstCol = collision.col;
         START_SQUARES.push({ ROW: firstRow, COL: firstCol });
@@ -481,7 +481,7 @@ function Board() {
         currentBoard[collision.row - i].CURRENT_ROW[
           collision.col
         ].AVAILABLE = false;
-        if (i == firstPart.length) {
+        if (i === firstPart.length) {
           firstRow = collision.row - i;
           firstCol = collision.col;
           START_SQUARES.push({ ROW: firstRow, COL: firstCol });
@@ -503,12 +503,13 @@ function Board() {
       ].AVAILABLE = false;
       VERTICAL_WORDS.push({
         WORD: wordToAdd,
+        // HINT: ,
         CLUE_NUMBER:
           START_SQUARES.indexOf(
             START_SQUARES.filter(
               (e) =>
-                e.ROW == collision.row - firstPart.length &&
-                e.COL == collision.col
+                e.ROW === collision.row - firstPart.length &&
+                e.COL === collision.col
             )[0]
           ) + 1,
       });
@@ -542,7 +543,7 @@ function Board() {
   function shuffle(array) {
     let currentIndex = array.length,
       randomIndex;
-    while (currentIndex != 0) {
+    while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
       [array[currentIndex], array[randomIndex]] = [
@@ -568,27 +569,25 @@ function Board() {
           ROW: currentRow,
           COL: currentCol,
           KEY_CHARACTER:
-            currentRow == 0 ||
-            currentRow == DIMENSIONS - 1 ||
-            currentCol == 0 ||
-            currentCol == DIMENSIONS - 1
+            currentRow === 0 ||
+            currentRow === DIMENSIONS - 1 ||
+            currentCol === 0 ||
+            currentCol === DIMENSIONS - 1
               ? "&"
               : "*",
           CHARACTER:
-            currentRow == 0 ||
-            currentRow == DIMENSIONS - 1 ||
-            currentCol == 0 ||
-            currentCol == DIMENSIONS - 1
+            currentRow === 0 ||
+            currentRow === DIMENSIONS - 1 ||
+            currentCol === 0 ||
+            currentCol === DIMENSIONS - 1
               ? "&"
               : "*",
           id: currentRow + "x" + currentCol,
           AVAILABLE:
-            currentRow == 0 ||
-            currentRow == DIMENSIONS - 1 ||
-            currentCol == 0 ||
-            currentCol == DIMENSIONS - 1
-              ? false
-              : true,
+            !(currentRow === 0 ||
+                currentRow === DIMENSIONS - 1 ||
+                currentCol === 0 ||
+                currentCol === DIMENSIONS - 1),
         });
       }
       BOARD.push({ CURRENT_ROW, id: currentRow });
@@ -660,7 +659,7 @@ function Board() {
         CLUE_NUMBER:
           START_SQUARES.indexOf(
             START_SQUARES.filter(
-              (e) => e.ROW == rowIndex && e.COL == colIndex
+              (e) => e.ROW === rowIndex && e.COL === colIndex
             )[0]
           ) + 1,
       });
@@ -676,7 +675,7 @@ function Board() {
     for (let i = 0; i < board.length; i++) {
       for (let j = 0; j < board[i].CURRENT_ROW.length; j++) {
         if (
-          board[i].CURRENT_ROW[j].CHARACTER.toLowerCase() !=
+          board[i].CURRENT_ROW[j].CHARACTER.toLowerCase() !==
           board[i].CURRENT_ROW[j].KEY_CHARACTER.toLowerCase()
         ) {
           finished = false;
@@ -700,7 +699,7 @@ function Board() {
                   clueNumber =
                     START_SQUARES.indexOf(
                       START_SQUARES.filter(
-                        (e) => e.ROW == rowItems.ROW && e.COL == rowItems.COL
+                        (e) => e.ROW === rowItems.ROW && e.COL === rowItems.COL
                       )[0]
                     ) + 1;
                 }

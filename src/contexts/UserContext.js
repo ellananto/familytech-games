@@ -23,7 +23,8 @@ export const UserProvider = ({ children }) => {
         const familySearchData = await UserService.getFamilySearchData(
           accessToken
         );
-        console.log(familySearchData);
+        // console.log('--------------------------------------------------------------')
+        // console.log(familySearchData);
 
         updateUserFSData(familySearchData.personMap);
       }
