@@ -69,7 +69,8 @@ function Board() {
   async function fetchData(userFSData, ascendancyNums) {
     //TO TEST LOCALLY, COMMENT OUT THE LOWER URL AND UNCOMMENT THE TOP ONE. THEN WHEN YOU PUSH TO MAIN, MAKE SURE THE TOP URL IS COMMENTED AND THE BOTTOM IS NOT
     const url = "http://localhost:3000/api/questiongenerator";
-    // const url = "https://games.byufamilytech.org/api/questiongenerator";
+    //const url = "https://games.byufamilytech.org/api/questiongenerator";
+
   
     try {
       const res = await axios.post(url, {userFSData, ascendancyNums});
