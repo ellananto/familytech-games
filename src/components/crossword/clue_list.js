@@ -56,7 +56,6 @@ function ClueList(props) {
             </div>
           );
         })}
-        <h3>Answers can be seen by right-clicking the clue</h3>
       </div>
     </>
   );
