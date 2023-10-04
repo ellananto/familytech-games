@@ -28,6 +28,21 @@
   width: 28px;
   text-transform: capitalize;
 }
+/*.square_correct {*/
+/*  background: green;*/
+/*  border: 2px solid green;*/
+/*  float: left;*/
+/*  font-size: 24px;*/
+/*  font-weight: bold;*/
+/*  line-height: 34px;*/
+/*  height: 28px;*/
+/*  margin-right: -1px;*/
+/*  margin-top: -1px;*/
+/*  padding: 0;*/
+/*  text-align: center;*/
+/*  width: 28px;*/
+/*  text-transform: capitalize;*/
+/*}*/
 
 .number {
   position: absolute;
@@ -96,7 +111,34 @@
 
 .person_button {
   background-color: green;
-  color: #000; /* Text color */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-block; /* Display the button inline with text */
+  align-items: center;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.answer_button {
+  background-color: var(--red);
+  color: black; /* Text color */
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-block; /* Display the button inline with text */
+  align-items: center;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.clue_button {
+  background-color: var(--blue);
+  color: white; /* Text color */
   border: none;
   border-radius: 20px;
   padding: 5px 10px;
@@ -149,17 +191,3 @@
   margin-top: 3em;
 }
 
-/* Green background for correct letters */
-.correct {
-  background-color: #4caf50; /* You can adjust the shade of green as needed */
-  border-color: #4caf50; /* Border color for correct letters */
-  /* You can add more styles as needed */
-}
-
-/* Red background for incorrect letters */
-.incorrect {
-  background-color: #f44336; /* You can adjust the shade of red as needed */
-  border-color: #f44336; /* Border color for incorrect letters */
-  color: #fff; /* White text color to improve visibility */
-  /* You can add more styles as needed */
-}

@@ -39,4 +39,3 @@ jspm_packages
 
 .idea
 src/\*
-src/public/sw.js.map
