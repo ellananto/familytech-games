@@ -79,6 +79,7 @@ function Clue(props) {
             <p>{hint}</p>
           </div>
       </Modal>
+        <br></br>
     </>
   );
 }
