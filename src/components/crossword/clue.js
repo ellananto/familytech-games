@@ -4,7 +4,6 @@ import Person from "@/components/person";
 import { useUser } from "@/contexts/UserContext";
 import {HiLightBulb} from "react-icons/hi";
 import styles from "@/styles/crossword.module.css";
-import modalStyles from "@/styles/Person.module.css";
 
 
 function Clue(props) {
@@ -56,7 +55,7 @@ function Clue(props) {
         <Person personData={currentPerson}/>
       </Modal>
       <Modal open={showHint} onClose={() => setShowHint(false)}>
-          <div className={modalStyles.container}>
+          <div className={styles.hint_container}>
             <p>{hint}</p>
           </div>
       </Modal>

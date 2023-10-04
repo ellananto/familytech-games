@@ -79,3 +79,44 @@
   margin-right: 5px;
   margin-left: 5px;
 }
+
+.hint_container {
+  background-color: var(--white);
+  border-radius: 5px;
+  border: solid 3px #ffbd03;
+  width: fit-content;
+  padding: 2em;
+  margin: 0 auto;
+  margin-top: 4em;
+  text-align: center;
+  box-shadow: #ffbd03 0px 10px 30px -12px inset,
+  #ffbd03 0px 18px 36px -18px inset;
+}
+
+.hint_header {
+  display: flex;
+  padding: 1.5em;
+  border-radius: 5px;
+}
+
+.hint-header-info {
+  margin: 0 auto;
+  padding: 0.5em;
+}
+
+#display_name {
+  align-self: flex-start;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#link_btn {
+  width: 50%;
+  border-radius: 5px;
+  justify-content: right;
+}
+
+.hint_info {
+  text-align: left;
+  margin-top: 3em;
+}

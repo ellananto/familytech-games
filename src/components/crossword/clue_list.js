@@ -3,12 +3,6 @@ import {useEffect, useState} from "react";
 
 function ClueList(props) {
   let { verticalClues, horizontalClues, result } = props;
-  console.log('-----------------verticalClues----------------------')
-  console.log(verticalClues)
-  console.log('-----------------horizontalClues----------------------')
-  console.log(horizontalClues)
-  console.log('-----------------result----------------------')
-  console.log(result)
   const [clueList, setClueList] = useState({VERTICAL: verticalClues, HORIZONTAL:horizontalClues});
   useEffect(() => {
     setClueList(makeClueList());

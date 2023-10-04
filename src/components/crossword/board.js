@@ -16,7 +16,7 @@ function Board() {
   let VERTICAL_WORDS = [];
   let HORIZONTAL_WORDS = [];
   let justAscendencyNums = [];
-  let DIMENSIONS = 32;
+  let DIMENSIONS = 25;
   const { userFSData } = useUser();
   let ANCESTORS = [];
   let ascendencyNums = [];
