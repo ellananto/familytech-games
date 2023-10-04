@@ -26,8 +26,6 @@ function ClueList(props) {
       clueList.VERTICAL[i].CLUE = clue.clue
       clueList.VERTICAL[i].HINT = clue.hint
     }
-    console.log('------------------clueList.VERTICAL[i]-------------------')
-    console.log(clueList.VERTICAL[i])
   }
 
   for (let i = 0; i < clueList.HORIZONTAL.length; i++) {

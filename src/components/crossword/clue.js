@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Modal } from "@mui/material";
 import Person from "@/components/person";
 import { useUser } from "@/contexts/UserContext";
-import {HiLightBulb} from "react-icons/hi";
+import { HiLightBulb} from "react-icons/hi";
+import { BsFillPersonFill } from 'react-icons/bs'
 import styles from "@/styles/crossword.module.css";
 
 
@@ -28,7 +29,6 @@ function Clue(props) {
       const realFoundPerson = userFSData.get(Object.values(foundPerson)[0])
       if (foundPerson) {
         setCurrentPerson(realFoundPerson);
-        setShowPersonInfo(true);
         setShowHint(false);
       }
     }
@@ -46,9 +46,16 @@ function Clue(props) {
       >
         {number + ". " + (displayClue ? clue : word)}
           <div className={styles.hint_button_container}>
+              {displayClue === true && (
           <button className={styles.hint_button} onClick={() => setShowHint(true)}>
-              <HiLightBulb />
+              <HiLightBulb /> Show hint
           </button>
+                  )}
+          {displayClue === false && (
+              <button className={styles.person_button} onClick={() => setShowPersonInfo(true)}>
+                  <BsFillPersonFill /> See person
+              </button>
+          )}
         </div>
       </div>
       <Modal open={showPersonInfo} onClose={() => setShowPersonInfo(false)}>
