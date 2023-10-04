@@ -1,33 +1,87 @@
 .square_incorrect {
-  background: #fff;
-  border: 1px solid;
+  background: #3498DB;
+  border: 1px solid #2980B9;
+  color: #0185DD;
   float: left;
-  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 15px;
   font-weight: bold;
   line-height: 34px;
   height: 28px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
+  margin-right: 4px;
+  margin-top: 4px;
+  padding: 0 8px;
   text-align: center;
   width: 28px;
   text-transform: capitalize;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+.square_incorrect:hover {
+  background: #2EA4F3;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .square_correct {
-  background: green;
-  border: 2px solid green;
+  background: #3498DB;
+  border: 1px solid green;
+  color: green;
   float: left;
-  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 15px;
   font-weight: bold;
   line-height: 34px;
   height: 28px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
+  margin-right: 4px;
+  margin-top: 4px;
+  padding: 0 8px;
   text-align: center;
   width: 28px;
   text-transform: capitalize;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+.square_correct:hover {
+  background: green;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*.square_incorrect {*/
+/*  background: #fff;*/
+/*  border: 1px solid;*/
+/*  float: left;*/
+/*  font-size: 24px;*/
+/*  font-weight: bold;*/
+/*  line-height: 34px;*/
+/*  height: 28px;*/
+/*  margin-right: -1px;*/
+/*  margin-top: -1px;*/
+/*  padding: 0;*/
+/*  text-align: center;*/
+/*  width: 28px;*/
+/*  text-transform: capitalize;*/
+/*}*/
+/*.square_correct {*/
+/*  background: green;*/
+/*  border: 2px solid green;*/
+/*  float: left;*/
+/*  font-size: 24px;*/
+/*  font-weight: bold;*/
+/*  line-height: 34px;*/
+/*  height: 28px;*/
+/*  margin-right: -1px;*/
+/*  margin-top: -1px;*/
+/*  padding: 0;*/
+/*  text-align: center;*/
+/*  width: 28px;*/
+/*  text-transform: capitalize;*/
+/*}*/
 /*.square_correct {*/
 /*  background: green;*/
 /*  border: 2px solid green;*/

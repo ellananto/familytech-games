@@ -38,24 +38,24 @@ function Square(props) {
               className={squareClasses} // Apply the correct or incorrect class
       readOnly={key_character === "*" || key_character === "&"}
       style={
-        key_character === "*"
-          ? { backgroundColor: "black", borderColor: "black" }
-          : key_character === "&"
-          ? {
-              backgroundColor: "white",
-              height: 0,
-              width: 0,
-              border: 0,
-            } : {}
-          //: { backgroundColor: "white", borderColor: "black" }
+          key_character === "*"
+              ? { backgroundColor: "#2EA4F3", borderColor: "#2EA4F3" }
+              : key_character === "&"
+                  ? {
+                      backgroundColor: "white",
+                      height: 0,
+                      width: 0,
+                      border: 0,
+                  }
+                  : { }
       }
-      maxLength={1}
-      type="text"
-      onChange={handleChange}
-      onKeyDown={handleDownKey}
-      disabled={
-        key_character === "*" || key_character === "&"
-      }
+              maxLength={1}
+              type="text"
+              onChange={handleChange}
+              onKeyDown={handleDownKey}
+              disabled={
+                  key_character === "*" || key_character === "&"
+              }
     ></input>
   </div>
     </>
