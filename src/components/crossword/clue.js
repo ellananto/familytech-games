@@ -51,35 +51,35 @@ function Clue(props) {
               {displayClue === true && (
               <div>
                   <button className={styles.hint_button} onClick={() => setShowHint(true)}>
-                      <HiLightBulb /> Show hint
+                      <HiLightBulb /> Hint
                   </button>
                   <button className={styles.answer_button} onClick={() => setDisplayClue(false)}>
-                      <MdQuestionAnswer /> Show answer
+                      <MdQuestionAnswer /> Answer
                   </button>
               </div>
                   )}
           {displayClue === false && (
               <div>
               <button className={styles.clue_button} onClick={() => setDisplayClue(true)}>
-                  <BiSearchAlt2 /> Show clue
+                  <BiSearchAlt2 /> Clue
               </button>
               <button className={styles.person_button} onClick={() => setShowPersonInfo(true)}>
-                  <BsFillPersonFill /> Show person
+                  <BsFillPersonFill /> Person
               </button>
               </div>
 
           )}
         </div>
       </div>
-      <Modal open={showPersonInfo} onClose={() => setShowPersonInfo(false)}>
-        <Person personData={currentPerson}/>
-      </Modal>
-      <Modal open={showHint} onClose={() => setShowHint(false)}>
-          <div className={styles.hint_container}>
-            <p>{hint}</p>
-          </div>
-      </Modal>
-        <br></br>
+      {/*<Modal open={showPersonInfo} onClose={() => setShowPersonInfo(false)}>*/}
+      {/*  <Person personData={currentPerson}/>*/}
+      {/*</Modal>*/}
+      {/*<Modal open={showHint} onClose={() => setShowHint(false)}>*/}
+      {/*    <div className={styles.hint_container}>*/}
+      {/*      <p>{hint}</p>*/}
+      {/*    </div>*/}
+      {/*</Modal>*/}
+      {/*  <br></br>*/}
     </>
   );
 }
