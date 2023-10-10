@@ -41,7 +41,7 @@ function Square(props) {
 
   return (
     <>
-      <div className='div'>
+      <div className={styles.div}>
           {clueNumber !== 0 ? <p className={styles.number}>{clueNumber}</p> : null}
         <input
             ref={(element) =>

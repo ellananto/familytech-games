@@ -71,15 +71,15 @@ function Clue(props) {
           )}
         </div>
       </div>
-      {/*<Modal open={showPersonInfo} onClose={() => setShowPersonInfo(false)}>*/}
-      {/*  <Person personData={currentPerson}/>*/}
-      {/*</Modal>*/}
-      {/*<Modal open={showHint} onClose={() => setShowHint(false)}>*/}
-      {/*    <div className={styles.hint_container}>*/}
-      {/*      <p>{hint}</p>*/}
-      {/*    </div>*/}
-      {/*</Modal>*/}
-      {/*  <br></br>*/}
+      <Modal open={showPersonInfo} onClose={() => setShowPersonInfo(false)}>
+        <Person personData={currentPerson}/>
+      </Modal>
+      <Modal open={showHint} onClose={() => setShowHint(false)}>
+          <div className={styles.hint_container}>
+            <p>{hint}</p>
+          </div>
+      </Modal>
+        <br></br>
     </>
   );
 }
