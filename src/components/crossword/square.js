@@ -13,28 +13,32 @@ function Square(props) {
     dimensions,
     inputLocation,
   } = props;
-    const [squareClasses, setSquareClasses] = useState(styles.incorrect);
+    const [squareClasses, setSquareClasses] = useState(squareClass());
     function handleChange(event) {
     handleSquareInput(event.target.value, row, col, inputLocation)
-      setSquareClasses(squareClass(event)
-      )
+    setSquareClasses(squareClass(event))
     }
 
   function handleDownKey(event) {
     handleKeyDown(event, row, col, inputLocation)
   }
 
-  function squareClass (event) {
+  function squareClass (event = {}) {
       switch (key_character) {
         case ('*'):
+          console.log(`----------------HIT *------------------`)
           return styles.star
         case  ('&'):
+          console.log(`----------------HIT &------------------`)
           return styles.ampersand
-        case (event.target.value.toUpperCase()):
+        case (event?.target?.value.toUpperCase()):
+          console.log(`----------------HIT Correct------------------`)
           return styles.correct
-        case (!event.target.value.toUpperCase()):
+        case (!event?.target?.value.toUpperCase()):
+          console.log(`----------------HIT Incorrect------------------`)
           return styles.incorrect
         default:
+          console.log(`----------------HIT Default------------------`)
           return styles.incorrect
       }
   }
@@ -47,7 +51,7 @@ function Square(props) {
             ref={(element) =>
                 (inputLocation.current[row * dimensions + col] = element)
             }
-            className={key_character === '*' ? styles.star : key_character === '&' ? styles.ampersand : squareClasses}
+            className={squareClasses}
             readOnly={key_character === '*' || key_character === '&'}
             maxLength={1}
             type="text"
