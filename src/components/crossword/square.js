@@ -26,19 +26,14 @@ function Square(props) {
   function squareClass (event = {}) {
       switch (key_character) {
         case ('*'):
-          console.log(`----------------HIT *------------------`)
           return styles.star
         case  ('&'):
-          console.log(`----------------HIT &------------------`)
           return styles.ampersand
         case (event?.target?.value.toUpperCase()):
-          console.log(`----------------HIT Correct------------------`)
           return styles.correct
         case (!event?.target?.value.toUpperCase()):
-          console.log(`----------------HIT Incorrect------------------`)
           return styles.incorrect
         default:
-          console.log(`----------------HIT Default------------------`)
           return styles.incorrect
       }
   }
