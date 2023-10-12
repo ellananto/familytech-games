@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import { Modal } from "@mui/material";
 import Person from "@/components/person";
 import { useUser } from "@/contexts/UserContext";
@@ -35,8 +35,18 @@ function Clue(props) {
       }
     }
   }
+  const [clueHover, setClueHover] = useState(localStorage.getItem('clueHover') || '');
+    function setHoverClue () {
+        localStorage.setItem('clueHover', number)
+        // console.log(`----------------------${number}--------------------`)
+        window.dispatchEvent(new Event('hoverClue') )
+    }
+    function  removeHoverClue (){
+        localStorage.setItem('clueHover', '')
+        window.dispatchEvent(new Event('hoverClue') )
+    }
 
-  // useEffect(() => {
+    // useEffect(() => {
   //   setDisplayClue(false);
   // }, []);
 
@@ -45,6 +55,8 @@ function Clue(props) {
       <div 
         // onContextMenu={ handleContextMenu }
         onClick={displayClue ? null : handleNameClick}
+        onMouseOver={ setHoverClue }
+        onMouseLeave={ removeHoverClue }
       >
         {number + ". " + (displayClue ? clue : word)}
           <div className={styles.hint_button_container}>

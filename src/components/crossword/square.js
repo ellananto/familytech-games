@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from "@/styles/crossword.module.css";
 
 function Square(props) {
@@ -23,6 +23,18 @@ function Square(props) {
     handleKeyDown(event, row, col, inputLocation)
   }
 
+  const [clueHoverValue, setClueHoverValue] = useState(localStorage.getItem('clueHover') || '')
+
+  useEffect(() => {
+    const handleClueHover = (e) => {
+      setClueHoverValue(localStorage.getItem('clueHover'))
+    };
+    window.addEventListener('hoverClue', handleClueHover);
+    return () => {
+      window.removeEventListener('hoverClue', handleClueHover);
+    };
+  }, []);
+
   function squareClass (event = {}) {
       switch (key_character) {
         case ('*'):
@@ -41,12 +53,13 @@ function Square(props) {
   return (
     <>
       <div className={styles.div}>
-          {clueNumber !== 0 ? <p className={styles.number}>{clueNumber}</p> : null}
+
+        {clueNumber !== 0 ? <p className={styles.number}>{clueNumber}</p> : null}
         <input
             ref={(element) =>
                 (inputLocation.current[row * dimensions + col] = element)
             }
-            className={squareClasses}
+            className={`${squareClasses} ${clueHoverValue === clueNumber.toString() ? styles.clueHover : null}`}
             readOnly={key_character === '*' || key_character === '&'}
             maxLength={1}
             type="text"

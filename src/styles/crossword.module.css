@@ -235,3 +235,8 @@
   text-align: center;
   text-transform: capitalize;
 }
+
+.clueHover {
+  background-color: #ffbd03;
+  border: #ffbd03 3px;
+}
