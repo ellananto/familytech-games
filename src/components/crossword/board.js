@@ -8,7 +8,7 @@ import axios from 'axios'
 
 let START_SQUARES = [];
 
-function Board() {
+function Board({dimension}) {
   let BOARD = [];
   let finished = false;
   let ADDED_WORDS = [];
@@ -16,7 +16,7 @@ function Board() {
   let VERTICAL_WORDS = [];
   let HORIZONTAL_WORDS = [];
   let justAscendencyNums = [];
-  let DIMENSIONS = 25;
+  let DIMENSIONS = dimension;
   const { userFSData } = useUser();
   let ANCESTORS = [];
   let ascendencyNums = [];

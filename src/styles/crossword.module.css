@@ -29,8 +29,7 @@
   position: fixed;
   z-index: 2;
   text-align: center;
-  background-color: #f6daf7;
-  background-color: #ffc7c7;
+  background-color: var(--white);
   width: 50%;
   height: fit-content;
   top: 20%;
@@ -44,6 +43,21 @@
   right: 15px;
   top: 15px;
   padding: 10px;
+}
+
+.difficulty_button {
+  background-color: var(--blue);
+  color: white; /* Text color */
+  border: none;
+  border-radius: 10px;
+  padding: 10px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block; /* Display the button inline with text */
+  align-items: center;
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 20px;
 }
 
 .hint_button_container {
