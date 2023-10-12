@@ -35,10 +35,8 @@ function Clue(props) {
       }
     }
   }
-  const [clueHover, setClueHover] = useState(localStorage.getItem('clueHover') || '');
     function setHoverClue () {
         localStorage.setItem('clueHover', number)
-        // console.log(`----------------------${number}--------------------`)
         window.dispatchEvent(new Event('hoverClue') )
     }
     function  removeHoverClue (){
