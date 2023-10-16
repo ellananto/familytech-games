@@ -133,23 +133,60 @@ function Board({dimension}) {
 
   // Implements navigating the board with arrow keys and backspace on empty square
   function handleKeyDown(event, row, col, inputLocation) {
-    if (event.keyCode === 37) {
-      let movedLocation = inputLocation.current[row * DIMENSIONS + col - 1].focus();
-      if (movedLocation != null) {
-        movedLocation.focus();
-        movedLocation.setSelectionRange(1,1);
+    if (event.keyCode === 8) {
+      // If backspace is clicked:
+      event.preventDefault(); // Prevent the default backspace behavior.
+      // First, clear the content of the current square.
+      const currentSquare = inputLocation.current[row * DIMENSIONS + col];
+      currentSquare.value = '';
+
+      // Check whether to move horizontally or vertically.
+      if (col === 0 && row > 0) {
+        console.log("vertical");
+        // If you're at the beginning of the row but not in the first row, move up and clear the content.
+        handleVerticalBackspace(row, col, inputLocation);
+      } else if (col > 0) {
+        console.log("horizontal");
+        // If you're not at the beginning of the row, move left and clear the content.
+        handleHorizontalBackspace(row, col, inputLocation);
+      }
+
+    } else if (event.keyCode === 37) {
+      if (col > 0) {
+        // Move left horizontally.
+        handleHorizontalBackspace(row, col, inputLocation);
       }
     } else if (event.keyCode === 38) {
-      let movedLocation = inputLocation.current[row * DIMENSIONS + col - DIMENSIONS];
-      if (movedLocation != null) {
-        movedLocation.focus();
-        movedLocation.setSelectionRange(1,1);
+      if (row > 0) {
+        // Move up vertically in the same column.
+        handleVerticalBackspace(row, col, inputLocation);
       }
     } else if (event.keyCode === 39) {
-      inputLocation.current[row * DIMENSIONS + col + 1].focus();
+      if (col < DIMENSIONS - 1) {
+        // Move right horizontally.
+        inputLocation.current[row * DIMENSIONS + col + 1].focus();
+      } else if (row < DIMENSIONS - 1) {
+        // Move down vertically in the next column.
+        inputLocation.current[(row + 1) * DIMENSIONS].focus();
+      }
     } else if (event.keyCode === 40) {
-      inputLocation.current[row * DIMENSIONS + col + DIMENSIONS].focus();
+      if (row < DIMENSIONS - 1) {
+        // Move down vertically in the same column.
+        inputLocation.current[(row + 1) * DIMENSIONS + col].focus();
+      }
     }
+  }
+
+  function handleHorizontalBackspace(row, col, inputLocation) {
+    // Move left horizontally.
+    const currentSquare = inputLocation.current[row * DIMENSIONS + col];
+    currentSquare.value = '';
+    inputLocation.current[row * DIMENSIONS + col - 1].focus();
+  }
+
+  function handleVerticalBackspace(row, col, inputLocation) {
+    // Move up vertically in the same column.
+    inputLocation.current[(row - 1) * DIMENSIONS + col].focus();
   }
 
   // Inserts all of the other words into the board except the first word

@@ -19,8 +19,15 @@ function Square(props) {
     setSquareClasses(squareClass(event))
     }
 
-  function handleDownKey(event) {
-    handleKeyDown(event, row, col, inputLocation)
+  function handleDownKey(event) { // stays to the right of the letter
+    if (
+        event.key === "Tab" ||
+        event.key === "ArrowLeft" ||
+        event.key === "ArrowUp"
+    ) {
+      event.preventDefault();
+    }
+    handleKeyDown(event, row, col, inputLocation);
   }
 
   const [clueHoverValue, setClueHoverValue] = useState(localStorage.getItem('clueHover') || '')
